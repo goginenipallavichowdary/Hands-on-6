@@ -20,21 +20,17 @@ def benchmark(input_arrays):
         execution_times.append(end - start)
     return execution_times
 
-# Defining maximum input size and array sizes
 max_size = 200
 sizes = list(range(1, max_size + 1))
 
-# Generating inputs for best, worst, and average cases
-best_case = [list(range(1, size + 1)) for size in sizes]   # Best case: sorted arrays
-worst_case = [list(range(size, 0, -1)) for size in sizes]  # Worst case: reverse sorted
-average_case = [random.sample(range(1, size + 1), size) for size in sizes]  # Average case: random arrays
+best_case = [list(range(1, size + 1)) for size in sizes]  
+worst_case = [list(range(size, 0, -1)) for size in sizes] 
+average_case = [random.sample(range(1, size + 1), size) for size in sizes]  
 
-# Plotting the benchmark results
 plt.plot(sizes, measure_time(sorted_inputs), label='Best Case')
 plt.plot(sizes, measure_time(reverse_inputs), label='Worst Case')
 plt.plot(sizes, measure_time(random_inputs), label='Average Case')
 
-# Graph labels and legend
 plt.xlabel('Input Size (n)')
 plt.ylabel('Execution Time (s)')
 plt.title('Quicksort Benchmark with Fixed Pivot')
